@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all $(PLAYLISTS)
 
 GENRES:=All Rock Blues Synth Jazz
 
@@ -10,7 +10,7 @@ all: $(PLAYLISTS)
 
 $(PLAYLIST_DIR)%.m3u:
 	@if [ "$*" = "All" ]; then \
-		echo "#EXTGENRE:"; \
+		echo "#EXTGENRE:" > $@; \
 	else \
 		echo "#EXTGENRE:$*" > $@; \
 	fi
@@ -20,3 +20,4 @@ $(PLAYLIST_DIR)%.m3u:
 	else \
 		mpc search genre "$*" >> $@; \
 	fi
+	echo "$*"
