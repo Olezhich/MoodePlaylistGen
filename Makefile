@@ -20,4 +20,4 @@ $(PLAYLIST_DIR)%.m3u:
 	else \
 		mpc search genre "$*" >> $@; \
 	fi
-	echo "$*"
+	@echo "$*"
