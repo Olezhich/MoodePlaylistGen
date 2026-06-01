@@ -16,7 +16,7 @@ $(PLAYLIST_DIR)%.m3u:
 	fi
 	@echo "#EXTIMG:local" >> $@
 	@if [ "$*" = "All" ]; then \
-		mpc listall >> $@;
+		mpc listall >> $@; \
 	else \
-		mpc search genre "$*" >> $@;
+		mpc search genre "$*" >> $@; \
 	fi
