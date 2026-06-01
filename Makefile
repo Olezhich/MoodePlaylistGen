@@ -1,6 +1,6 @@
-.PHONY: all $(PLAYLISTS)
+.PHONY: all
 
-GENRES:=Rock Blues Synth Jazz
+GENRES:=All Rock Blues Synth Jazz
 
 PLAYLIST_DIR:=/var/lib/mpd/playlists/
 
@@ -9,6 +9,14 @@ PLAYLISTS:=$(addprefix $(PLAYLIST_DIR),$(addsuffix .m3u,$(GENRES)))
 all: $(PLAYLISTS)
 
 $(PLAYLIST_DIR)%.m3u:
-	@echo "#EXTGENRE:$*" > $@
+	@if [ "$*" = "All" ]; then \
+		echo "#EXTGENRE:"; \
+	else \
+		echo "#EXTGENRE:$*" > $@; \
+	fi
 	@echo "#EXTIMG:local" >> $@
-	mpc search genre "$*" >> $@
+	@if [ "$*" = "All" ]; then \
+		mpc listall >> $@;
+	else \
+		mpc search genre "$*" >> $@;
+	fi
