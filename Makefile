@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all $(PLAYLISTS)
 
 GENRES:=Rock Blues Synth Jazz
 
